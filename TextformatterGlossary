@@ -1,0 +1,75 @@
+<?php
+/**
+ * ProcessWire TextformatterGlossary
+ *
+ * module made by mr-fan.
+ * 15.09.15 basic class and wrapper configuration added
+ *
+ */
+class TextformatterGlossary extends Textformatter
+{
+    /**
+     * getModuleInfo is a module required by all modules to tell ProcessWire about them
+     *
+     * @return array
+     *
+     */
+    public static function getModuleInfo()
+    {
+        return array(
+            'title' => 'Autolink from a Glossary',
+            'version' => 101,
+            'author' => 'mr-fan',
+            'summary' => "Allows to use tags in textareas to autolink to specific glossary links."
+            //'href' => 'http://processwire.com/talk/topic/1182-module-image-tags/?p=57160',
+        );
+    }
+    /**
+     * Format the given text string.
+     *
+     * @param Page $page
+     * @param Field $field
+     * @param string $value
+     */
+    public function formatValue(Page $page, Field $field, &$value)
+    {
+        // use fast strpos check to make sure that $value contains pipes ||
+        if (stripos($value, '||') === false)
+            return;
+        //get all terms in ||pipes|| in an array
+        $matches = array();
+        preg_match_all('/\Q||\E[^|]+\Q||\E/', $value, $matches);
+        //the multidimensional array holds the single strings in the second array['0']
+        foreach ($matches['0'] as $key => $match) {
+            //get all glossary pages in a pagearray
+            $entry = wire('pages')->find("template=glossar_item,title=$match")->first();
+            if ($entry) { //entry is found in our glossar pages
+                //rip the pipes
+                $term = str_replace('|', '', $match);
+                //set the replacement depending from the item type
+                switch ($entry->glossar_type) {
+                    case '1': //abbr
+                        $replacement = '<abbr title="' . $entry->headline . '">' . $term . '</abbr>';
+                        break;
+                    case '2': //external link
+                        $replacement = '<a rel="help" target="blank" href="' . $entry->extern_link . '" data-original-title="' . $entry->headline . '"><span class="fa-globe" aria-hidden="true"></span> ' . $term . '</a>';
+                        break;
+                    case '3': //internal link
+                        //internal link need to get the url
+                        $internLink  = wire('pages')->get("$entry->page_link");
+                        $replacement = '<a rel="help" href="' . $internLink->url . '" data-original-title="' . $entry->headline . '">' . $term . '</a>';
+                        break;
+                    default:
+                        $replacement = $term;
+                }
+                //works the part inside the tags are changed ||test|| on every match
+                $value = str_replace($match, $replacement, $value);
+            } else { //the entry for  ||term|| is not found and get renderd without pipes just as normal text
+                //rip the pipes
+                $term  = str_replace('|', '', $match);
+                //replace the matches of ||term|| with the cleaned value
+                $value = str_replace($match, $term, $value);
+            }
+        }
+    }
+}
