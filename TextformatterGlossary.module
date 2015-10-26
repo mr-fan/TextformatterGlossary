@@ -42,12 +42,12 @@ class TextformatterGlossary extends Textformatter
         //the multidimensional array holds the single strings in the second array['0']
         foreach ($matches['0'] as $key => $match) {
             //get all glossary pages in a pagearray
-            $entry = wire('pages')->find("template=glossar_item,title=$match")->first();
+            $entry = wire('pages')->find("template=glossary_item,title=$match")->first();
             if ($entry) { //entry is found in our glossar pages
                 //rip the pipes
                 $term = str_replace('|', '', $match);
                 //set the replacement depending from the item type
-                switch ($entry->glossar_type) {
+                switch ($entry->glossary_type) {
                     case '1': //abbr
                         $replacement = '<abbr title="' . $entry->headline . '">' . $term . '</abbr>';
                         break;
