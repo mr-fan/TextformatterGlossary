@@ -1,8 +1,8 @@
 {
     "glossar": {
         "id": 73,
-        "name": "glossar",
-        "fieldgroups_id": "glossar",
+        "name": "glossary",
+        "fieldgroups_id": "glossary",
         "flags": 0,
         "cache_time": 0,
         "useRoles": 0,
@@ -41,7 +41,7 @@
         "cacheExpirePages": [],
         "cacheExpireSelector": "",
         "label": "Glossary",
-        "tags": "Glossar",
+        "tags": "Glossary",
         "titleNames": 0,
         "noPrependTemplateFile": 0,
         "noAppendTemplateFile": 0,
@@ -62,8 +62,8 @@
     },
     "glossar_item": {
         "id": 74,
-        "name": "glossar_item",
-        "fieldgroups_id": "glossar_item",
+        "name": "glossary_item",
+        "fieldgroups_id": "glossary_item",
         "flags": 0,
         "cache_time": 0,
         "useRoles": 0,
@@ -114,14 +114,14 @@
         "contentType": "",
         "_exportMode": true,
         "fieldgroupFields": [
-            "glossar_type",
+            "glossary_type",
             "title",
             "headline",
             "page_link",
             "extern_link"
         ],
         "fieldgroupContexts": {
-            "glossar_type": [],
+            "glossary_type": [],
             "title": {
                 "label1029": "Bezeichnung"
             },
@@ -133,16 +133,16 @@
             },
             "page_link": {
                 "required": 1,
-                "requiredIf": "glossar_type=3",
-                "showIf": "glossar_type=3"
+                "requiredIf": "glossary_type=3",
+                "showIf": "glossary_type=3"
             },
             "extern_link": {
                 "description1029": "Link URL (http://beispiel.de) eintragen.",
                 "label": "External Link",
                 "label1029": "Externer Link",
                 "required": 1,
-                "requiredIf": "glossar_type=2",
-                "showIf": "glossar_type=2"
+                "requiredIf": "glossary_type=2",
+                "showIf": "glossary_type=2"
             }
         }
     }
