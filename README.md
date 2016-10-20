@@ -27,7 +27,7 @@ You can use this textformatter on any textinputfield or wysiwyg.
 The terms are catched by pipes ||term||.
 If no term/tag is found the pipes will cleaned out. If a term/tag is found it will replaced with the term/tag from the glossary.
 
-## Profits
+## Advantages
 This sytem is higly flexible in organisation the terms, rights to change/add new tags, since every term is a real page.
 The basic typ of a term/tag could be everything - on my basic setup i use this for abbrevitations and external links that are often used. But there could be much more types of reusable snippets of html triggered by a specific term/tag.
 
