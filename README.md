@@ -22,6 +22,15 @@ https://processwire.com/talk/topic/7467-module-processabbreviate/
 
 But here i only have options for abbreviations and i couln't easy add stuff or replacments i need.
 
+## How it works?
+You can use this textformatter on any textinputfield or wysiwyg.
+The terms are catched by pipes ||term||.
+If no term/tag is found the pipes will cleaned out. If a term/tag is found it will replaced with the term/tag from the glossary.
+
+## Profits
+This sytem is higly flexible in organisation the terms, rights to change/add new tags, since every term is a real page.
+The basic typ of a term/tag could be everything - on my basic setup i use this for abbrevitations and external links that are often used. But there could be much more types of reusable snippets of html triggered by a specific term/tag.
+
 ## Problems?
 
 No known problems so far - but this is not really tested in a bigger scale....so use it like it is without warranty from me.
