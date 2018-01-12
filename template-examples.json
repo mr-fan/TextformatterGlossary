@@ -1,69 +1,8 @@
 {
-    "glossar": {
-        "id": 73,
-        "name": "glossary",
-        "fieldgroups_id": "glossary",
-        "flags": 0,
-        "cache_time": 0,
-        "useRoles": 0,
-        "noInherit": 0,
-        "childrenTemplatesID": 0,
-        "sortfield": "",
-        "noChildren": "",
-        "noParents": "",
-        "childTemplates": [],
-        "parentTemplates": [],
-        "allowPageNum": 0,
-        "allowChangeUser": 0,
-        "redirectLogin": 0,
-        "urlSegments": 0,
-        "https": 0,
-        "slashUrls": 1,
-        "slashPageNum": 0,
-        "slashUrlSegments": 0,
-        "altFilename": "",
-        "guestSearchable": 0,
-        "pageClass": "",
-        "childNameFormat": "",
-        "pageLabelField": "fa-book title",
-        "noGlobal": 0,
-        "noMove": 0,
-        "noTrash": 0,
-        "noSettings": 0,
-        "noChangeTemplate": 0,
-        "noShortcut": 0,
-        "noUnpublish": 0,
-        "nameContentTab": 0,
-        "noCacheGetVars": "",
-        "noCachePostVars": "",
-        "useCacheForUsers": 0,
-        "cacheExpire": 0,
-        "cacheExpirePages": [],
-        "cacheExpireSelector": "",
-        "label": "Glossary",
-        "tags": "Glossary",
-        "titleNames": 0,
-        "noPrependTemplateFile": 0,
-        "noAppendTemplateFile": 0,
-        "prependFile": "",
-        "appendFile": "",
-        "tabContent": "",
-        "tabChildren": "",
-        "nameLabel": "",
-        "contentType": "",
-        "label1029": "Glossar",
-        "_exportMode": true,
-        "fieldgroupFields": [
-            "title"
-        ],
-        "fieldgroupContexts": {
-            "title": []
-        }
-    },
     "glossar_item": {
         "id": 74,
-        "name": "glossary_item",
-        "fieldgroups_id": "glossary_item",
+        "name": "glossar_item",
+        "fieldgroups_id": "glossar_item",
         "flags": 0,
         "cache_time": 0,
         "useRoles": 0,
@@ -114,14 +53,15 @@
         "contentType": "",
         "_exportMode": true,
         "fieldgroupFields": [
-            "glossary_type",
+            "glossar_type",
             "title",
             "headline",
             "page_link",
-            "extern_link"
+            "extern_link",
+            "glossar_bild"
         ],
         "fieldgroupContexts": {
-            "glossary_type": [],
+            "glossar_type": [],
             "title": {
                 "label1029": "Bezeichnung"
             },
@@ -133,16 +73,19 @@
             },
             "page_link": {
                 "required": 1,
-                "requiredIf": "glossary_type=3",
-                "showIf": "glossary_type=3"
+                "requiredIf": "glossar_type=3",
+                "showIf": "glossar_type=3"
             },
             "extern_link": {
                 "description1029": "Link URL (http://beispiel.de) eintragen.",
                 "label": "External Link",
                 "label1029": "Externer Link",
                 "required": 1,
-                "requiredIf": "glossary_type=2",
-                "showIf": "glossary_type=2"
+                "requiredIf": "glossar_type=2",
+                "showIf": "glossar_type=2|4"
+            },
+            "glossar_bild": {
+                "showIf": "glossar_type=4|5"
             }
         }
     }
