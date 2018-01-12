@@ -17,8 +17,8 @@ class TextformatterGlossary extends Textformatter
     public static function getModuleInfo()
     {
         return array(
-            'title' => 'Autolink from a Glossary',
-            'version' => 101,
+            'title' => 'Autolink from Glossar',
+            'version' => 102,
             'author' => 'mr-fan',
             'summary' => "Allows to use tags in textareas to autolink to specific glossary links."
             //'href' => 'http://processwire.com/talk/topic/1182-module-image-tags/?p=57160',
@@ -42,12 +42,12 @@ class TextformatterGlossary extends Textformatter
         //the multidimensional array holds the single strings in the second array['0']
         foreach ($matches['0'] as $key => $match) {
             //get all glossary pages in a pagearray
-            $entry = wire('pages')->find("template=glossary_item,title=$match")->first();
+            $entry = wire('pages')->find("template=glossar_item,title=$match")->first();
             if ($entry) { //entry is found in our glossar pages
                 //rip the pipes
                 $term = str_replace('|', '', $match);
                 //set the replacement depending from the item type
-                switch ($entry->glossary_type) {
+                switch ($entry->glossar_type) {
                     case '1': //abbr
                         $replacement = '<abbr title="' . $entry->headline . '">' . $term . '</abbr>';
                         break;
@@ -57,7 +57,13 @@ class TextformatterGlossary extends Textformatter
                     case '3': //internal link
                         //internal link need to get the url
                         $internLink  = wire('pages')->get("$entry->page_link");
-                        $replacement = '<a rel="help" href="' . $internLink->url . '" data-original-title="' . $entry->headline . '">' . $term . '</a>';
+                        $replacement = '<a rel="help" href="' . $internLink->url . '" data-original-title="'. $entry->headline .'">' . $term . '</a>';
+                        break;
+                    case '4': //external link with image
+                        $replacement = '<a rel="help" target="blank" href="' . $entry->extern_link . '" data-original-title="' . $entry->headline . '"><img src="'.$entry->glossar_bild->url.'" alt="'. $entry->headline .'"></a>';
+                        break;
+                    case '5': //external link without image
+                        $replacement = '<abbr title="' . $entry->headline . '">' . $term . '</abbr>';
                         break;
                     default:
                         $replacement = $term;
@@ -71,5 +77,8 @@ class TextformatterGlossary extends Textformatter
                 $value = str_replace($match, $term, $value);
             }
         }
+        //$value .= print_r(array_keys($matches));
+        //$value .= print_r($matches);
+        //$value .= '<h1>Fund</h1>';
     }
 }
